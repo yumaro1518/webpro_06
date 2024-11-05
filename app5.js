@@ -67,4 +67,15 @@ app.get("/janken", (req, res) => {
   res.render( 'janken', display );
 });
 
+app.get("/lottery", (req, res) => {
+  const num = Math.floor( Math.random() * 9999 + 1 );
+  let item = '';
+  if( num>=1 &num<=100 ) item  = '1等賞!おめでとう！';
+  else if( num>=100 & num<=1000 ) item  = '2等賞!素晴らしい！';
+  else if( num>=1000 & num<=5000  ) item = '3等賞!いいね！';
+  else if( num>=5000 & num<=10000 ) item = '4等賞!まぁまぁやね';
+
+  res.render( 'lottery', {number:num, item:item} );
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
