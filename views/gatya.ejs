@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ガチャ結果</title>
+</head>
+<body>
+    <h1>ガチャ結果</h1>
+    
+    <!-- ガチャ結果の表示 -->
+    <% results.forEach(result => { %>
+        <p>番号: <%= result.number %> - <%= result.item %></p>
+    <% }) %>
+
+    <!-- 1連ガチャと10連ガチャボタン -->
+    <form action="/gatya" method="get">
+        <button type="submit" name="times" value="1">1連ガチャ</button>
+        <button type="submit" name="times" value="10">10連ガチャ</button>
+    </form>
+</body>
+</html>

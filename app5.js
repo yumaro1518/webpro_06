@@ -78,4 +78,29 @@ app.get("/lottery", (req, res) => {
   res.render( 'lottery', {number:num, item:item} );
 });
 
+app.get("/gatya", (req, res) => {
+  const times = req.query.times === "10" ? 10 : 1;  // デフォルトは1連
+  let results = [];
+
+  for (let i = 0; i < times; i++) {
+    const num = Math.floor(Math.random() * 9999 + 1);
+    let item = '';
+
+    if (num >= 1 && num <= 100) {
+      item = '1等賞!おめでとう！';
+    } else if (num > 100 && num <= 1000) {
+      item = '2等賞!素晴らしい！';
+    } else if (num > 1000 && num <= 5000) {
+      item = '3等賞!いいね！';
+    } else if (num > 5000 && num <= 10000) {
+      item = '4等賞!まぁまぁやね';
+    }
+
+    results.push({ number: num, item: item });
+  }
+  console.log
+
+  res.render('gatya', { results: results });
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
