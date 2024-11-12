@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webプログラミング 簡易案内サイト</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    </header>
+    <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="http://localhost:8080/icon">Icon</a></li>
+            <li><a href="http://localhost:8080/gatya">Gatya</a></li>
+            <li><a href="http://localhost:8080/janken">Janken</a></li>
+            <li><a href="http://localhost:8080/lottery">Lottery</a></li>
+            <li><a href="http://localhost:8080/luck">Luck</a></li>
+            <li><a href="http://localhost:8080/hello1">Show</a></li>
+        </ul>
+    </nav>
+    <div class="box_title">
+        <h5>Webプログラミング 簡易案内サイト</h5>
+    </div>
+    <div class="box_detail1">
+        <p>関連サイトに案内します!<br>localhost:8080ポート</p>
+    </div>
+    <div class="box_container">
+        <div class="box">
+            
+            <a href="http://localhost:8080/icon" class="box-content"><h1>Icon</h1></a>
+        </div>
+        <div class="box">
+            
+            <a href="http://localhost:8080/gatya" class="box-content"><h1>Gatya</h1></a>
+        </div>
+        <div class="box">
+            
+            <a href="http://localhost:8080/janken" class="box-content"><h1>Janken</h1></a>
+        </div>
+        <div class="box">
+           
+            <a href="http://localhost:8080/lottery" class="box-content"><h1>Lottery</h1></a>
+        </div>
+        <div class="box">
+            
+            <a href="http://localhost:8080/luck" class="box-content"><h1>Luck</h1></a>
+        </div>
+        <div class="box">
+    
+            <a href="http://localhost:8080/hello1" class="box-content"><h1>Show</h1></a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('show');
+        }
+    </script>
+</body>
+
+</html>

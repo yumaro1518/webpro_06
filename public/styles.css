@@ -1,0 +1,216 @@
+/* 全体のスタイル */
+body {
+    font-family: Segoe UI, SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ヘッダー */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 10px 20px;
+}
+
+/* サイトリンク */
+.site-link {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo {
+    width: 352px;
+    height: 40px;
+}
+
+/* メニューアイコン */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ナビゲーションバー */
+.navbar {
+    display: none;
+    background-color: #444;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    border-bottom: 1px solid #555;
+}
+
+.navbar ul li a {
+    color: inherit;            /* 親要素の色を引き継ぐ */
+    text-decoration: none;     /* 下線を消す */
+    display: block;
+    padding: 10px 20px;
+}
+
+.navbar ul li a:hover {
+    background-color: #555;
+    color: #f8f8f2;            /* ホバー時の色 */
+}
+
+.navbar.show {
+    display: block;
+}
+
+/* コードコンテナ */
+.code-container {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 800px;
+    overflow-x: auto;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.language-label {
+    background-color: #444;
+    color: #f8f8f2;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.copy-button {
+    background-color: #444;
+    color: #f8f8f2;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: #555;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ボックスコンテナ */
+.box_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* ボックス */
+.box {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Maintain square aspect ratio */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+    transform: scale(1.10);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ボックス内リンクのスタイル */
+.box-content {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.8); /* 背景で文字の視認性向上 */
+    padding: 10px;
+    border-radius: 5px;
+    color: inherit;           /* 親要素の色を引き継ぐ */
+    text-decoration: none;    /* 下線を消す */
+    display: block;           /* リンクをボックス全体に適用 */
+    font-size: 24px;          /* 文字サイズを大きく調整 */
+    font-weight: bold;
+}
+
+/* ボックスのアイコン */
+.box img.icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+    max-height: 60%;
+    z-index: 1;
+}
+
+/* タイトル */
+.box_title {
+    grid-column: span 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    font-weight: 600;
+    font-size: 50px;
+    background-color: #fff;
+    color: #aa8f7b;
+    text-align: center;
+}
+
+/* 詳細テキスト */
+.box_detail1 {
+    grid-column: span 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 25px;
+    font-weight: 450;
+    background-color: #fff;
+    color: #444;
+    text-align: center;
+}
+
+.box:hover .box-content {
+    display: block;
+}

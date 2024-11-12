@@ -7,6 +7,7 @@
     "start": "node app4.js"
   },
   "dependencies": {
+    "@mermaid-js/mermaid-cli": "^11.4.0",
     "dot-prop": ">=5.1.1",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
@@ -16,5 +17,8 @@
     "set-value": "^4.0.1",
     "sqlite3": ""
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "markdown-pdf": "^11.0.0"
+  }
 }

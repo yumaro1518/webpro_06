@@ -25,8 +25,10 @@
 | ファイル名           | 説明                        |
 |----------------------|-----------------------------|
 | `app5.js`            | プログラム本体               |
+| `public/index.html` | 案内画面　>>> http://localhost:8080/public/index.html  |
+| `public/styles.css` | 案内画面の装飾　       |
 | `public/janken.html` | じゃんけんの開始画面        |
-| `views/janken.ejs`   | じゃんけんのテンプレートファイル |
+| `public/test.html`    | じゃんけんのテンプレートファイル |
 
 
 
@@ -49,4 +51,10 @@
 ## サーバの起動
 ```terminal
 node app5.js
+```
+## Github　プッシュするまでの流れ
+```terminal
+git add .
+git commit -am "コメント内容（変更内容）"
+git push
 ```

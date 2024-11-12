@@ -103,4 +103,10 @@ app.get("/gatya", (req, res) => {
   res.render('gatya', { results: results });
 });
 
+app.get("/test", (req, res) => {
+  const value = req.query.month;
+  const value1 = req.query.number;
+
+});
+
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
