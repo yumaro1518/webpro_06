@@ -6,16 +6,88 @@
 </head>
 <body>
     <h1>ガチャ結果</h1>
-    
-    <!-- ガチャ結果の表示 -->
-    <% results.forEach(result => { %>
-        <p>番号: <%= result.number %> - <%= result.item %></p>
-    <% }) %>
 
-    <!-- 1連ガチャと10連ガチャボタン -->
-    <form action="/gatya" method="get">
-        <button type="submit" name="times" value="1">1連ガチャ</button>
-        <button type="submit" name="times" value="10">10連ガチャ</button>
-    </form>
+    <div class="result-container">
+        <!-- ガチャ結果の表示 -->
+        <% results.forEach(result => { %>
+            <p class="result-item">番号: <span><%= result.number %></span> - <%= result.item %></p>
+        <% }) %>
+
+        <!-- 1連ガチャと10連ガチャボタン -->
+        <div class="form-container">
+            <form action="/gatya" method="get">
+                <button type="submit" name="times" value="1">1連ガチャ</button>
+                <button type="submit" name="times" value="10">10連ガチャ</button>
+            </form>
+        </div>
+    </div>
 </body>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f8ff; /* 明るい青 */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #333;
+    }
+
+    h1 {
+        font-size: 36px;
+        color: #ff6347; /* トマト色 */
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .result-container {
+        background-color: #fff; /* 白 */
+        border-radius: 10px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+        border: 3px solid #ff8c00; /* 明るいオレンジ */
+    }
+
+    .result-item {
+        font-size: 20px;
+        color: #333;
+        margin: 10px 0;
+        font-weight: bold;
+    }
+
+    .result-item span {
+        color: #ff4500; /* オレンジがかった赤 */
+    }
+
+    .form-container {
+        margin-top: 30px;
+    }
+
+    button {
+        background-color: #ff7f50; /* 明るいオレンジ */
+        color: white;
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #ff5722; /* オレンジがかった赤 */
+    }
+
+    .hidden {
+        display: none;
+    }
+
+</style>
 </html>

@@ -5,7 +5,87 @@
     <title>福引！狙え１等賞！</title>
 </head>
 <body>
-    <p>ガラガラガラガラ〜！コロン！>>> <%= item %></p>
-    <p>デバッグ用：<%= number %></p>
+    <h1>福引！狙え１等賞！</h1>
+
+    <div class="result-container">
+        <p class="result-message">ガラガラガラガラ〜！コロン！>>> <span><%= item %></span></p>
+        <p class="debug-info">デバッグ用：<%= number %></p>
+    </div>
+
+    <!-- ガチャボタン -->
+    <form action="/lottery" method="get">
+        <button type="submit" name="times" value="1">1回福引</button>
+    </form>
 </body>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9; /* 明るいグレー */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #333;
+    }
+
+    h1 {
+        font-size: 36px;
+        color: #ff7f50; /* 明るいオレンジ */
+        margin-bottom: 20px;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 少し影をつけて目立たせる */
+    }
+
+    .result-container {
+        background-color: #fff; /* 明るい白 */
+        border-radius: 10px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* 少し強めの影で立体感を出す */
+        padding: 30px;
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+        border: 3px solid #ff8c00; /* 明るいオレンジの枠線 */
+    }
+
+    .result-message {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ff6347; /* 明るいトマト色 */
+        margin: 20px 0;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .debug-info {
+        font-size: 14px;
+        color: #aaaaaa; /* 明るいグレー */
+        margin-top: 10px;
+        font-style: italic;
+    }
+
+    .result-message span {
+        font-size: 28px;
+        color: #ff4500; /* 赤みがかったオレンジ */
+        font-weight: 700;
+    }
+
+    button {
+        background-color: #ff7f50; /* 明るいオレンジ */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background-color: #ff5722; /* オレンジがかった赤 */
+    }
+
+</style>
 </html>
