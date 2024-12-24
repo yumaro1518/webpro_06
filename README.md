@@ -151,7 +151,7 @@ localhost:8080/(エンドポイント名)
 ```
 `エンドポイント名`には`/icon`,`show`,`/janken`,`/lottery`,`/gatya`を指定することができる。
 
-## Github　プッシュするまでの流れ
+## Github　プッシュするまでの流れ(開発者向け)
 ```terminal
 git add .
 git commit -am "コメント内容（変更内容）"
