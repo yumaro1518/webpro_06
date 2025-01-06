@@ -1,90 +1,115 @@
 "use strict";
 
-let number=0;
 const bbs = document.querySelector('#bbs');
+const totalMessagesElement = document.createElement('div');
+totalMessagesElement.className = 'total-messages';
+document.body.appendChild(totalMessagesElement);
+
 document.querySelector('#post').addEventListener('click', () => {
-    const name = document.querySelector('#name').value;
-    const message = document.querySelector('#message').value;
+    const name = document.querySelector('#name').value.trim();
+    const message = document.querySelector('#message').value.trim();
 
-    const params = {  // URL Encode
+    if (!name || !message) {
+        alert("名前とメッセージを入力してください！");
+        return;
+    }
+
+    const params = {
         method: "POST",
-        body:  'name='+name+'&message='+message,
+        body: `name=${encodeURIComponent(name)}&message=${encodeURIComponent(message)}`,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     };
-    console.log( params );
-    const url = "/post";
-    fetch( url, params )
-    .then( (response) => {
-        if( !response.ok ) {
-            throw new Error('Error');
-        }
-        return response.json();
-    })
-    .then( (response) => {
-        console.log( response );
-        document.querySelector('#message').value = "";
-    });
+
+    fetch('/post', params)
+        .then(response => {
+            if (!response.ok) throw new Error('投稿に失敗しました');
+            return response.json();
+        })
+        .then(() => {
+            document.querySelector('#name').value = "";
+            document.querySelector('#message').value = "";
+            alert("投稿が完了しました！");
+            loadMessages();  // 新しい投稿後にメッセージを再読み込み
+        })
+        .catch(error => alert(error.message));
 });
 
-document.querySelector('#check').addEventListener('click', () => {
-    const params = {  // URL Encode
+document.addEventListener('DOMContentLoaded', () => {
+    const themeMenu = document.querySelector('#theme-menu');
+    
+    // デフォルトテーマを設定
+    document.body.classList.add('default-theme');
+
+    themeMenu.addEventListener('change', (event) => {
+        // すべてのテーマクラスを削除
+        document.body.className = '';
+        
+        // 選択されたテーマを適用
+        const selectedTheme = event.target.value + '-theme';
+        document.body.classList.add(selectedTheme);
+    });
+
+    // 初回メッセージロード
+    loadMessages();
+});
+
+function loadMessages() {
+    const params = {
         method: "POST",
-        body:  '',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}),
     };
-    const url = "/check";
-    fetch( url, params )
-    .then( (response) => {
-        if( !response.ok ) {
-            throw new Error('Error');
-        }
-        return response.json();
-    })
-    .then( (response) => {
-        let value = response.number;
-        console.log( value );
 
-        console.log( number );
-        if( number != value ) {
-            const params = {
-                method: "POST",
-                body: 'start='+number,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'               
-                }
-            }
-            const url = "/read";
-            fetch( url, params )
-            //エラー処理
-            .then( (response) => {
-                if( !response.ok ) {
-                    throw new Error('Error');
-                }
-                return response.json();
-            })
-            //投稿内容を表示
-            .then( (response) => {
-                number += response.messages.length;
-                for( let mes of response.messages ) {
-                    console.log( mes );  // 表示する投稿
-                    let cover = document.createElement('div');
-                    cover.className = 'cover';
-                    let name_area = document.createElement('span');
-                    name_area.className = 'name';
-                    name_area.innerText = mes.name;
-                    let mes_area = document.createElement('span');
-                    mes_area.className = 'mes';
-                    mes_area.innerText = mes.message;
-                    cover.appendChild( name_area );
-                    cover.appendChild( mes_area );
+    fetch("/read", params)
+        .then(response => response.json())
+        .then(data => {
+            displayMessages(data.messages);
+            displayTotalMessages(data.total);
+        })
+        .catch(error => alert(error.message));
+}
 
-                    bbs.appendChild( cover );
-                }
-            })
-        }
+function displayMessages(messages) {
+    bbs.innerHTML = ""; // 初期化
+    messages.forEach(mes => {
+        const cover = document.createElement('div');
+        cover.className = 'cover';
+
+        const name = document.createElement('span');
+        name.className = 'name';
+        name.innerText = mes.name;
+
+        const message = document.createElement('span');
+        message.className = 'mes';
+        message.innerText = mes.message;
+
+        const timestamp = document.createElement('span');
+        timestamp.className = 'timestamp';
+        timestamp.innerText = new Date(mes.timestamp).toLocaleString(); // 時刻をフォーマット
+
+        cover.appendChild(name);
+        cover.appendChild(message);
+        cover.appendChild(timestamp);
+        bbs.appendChild(cover);
     });
-});
+}
+
+function displayTotalMessages(total) {
+    totalMessagesElement.innerText = `全投稿件数: ${total}`;
+}
+
+function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'  // スムーズにスクロール
+    });
+}
+
+function scrollToBottom() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'  // スムーズにスクロール
+    });
+}
